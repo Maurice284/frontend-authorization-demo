@@ -3,7 +3,7 @@ import { useState } from "react";
 import Logo from "./Logo";
 import "./styles/Login.css";
 
-const Login = () => {
+const Login = ({ handleLogin }) => {
   const [data, setData] = useState({
     username: "",
     password: "",
@@ -15,6 +15,11 @@ const Login = () => {
       ...prevData,
       [name]: value,
     }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleLogin(data);
   };
 
   return (
@@ -44,7 +49,7 @@ const Login = () => {
           onChange={handleChange}
         />
         <div className="login__button-container">
-          <button type="submit" className="login__link">
+          <button type="submit" className="login__link" onClick={handleSubmit}>
             Log in
           </button>
         </div>
